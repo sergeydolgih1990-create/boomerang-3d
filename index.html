@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Бумеранг Lobaro</title>
+<title>Бумеранг — 3D-модель</title>
 <meta name="robots" content="noindex">
-<meta name="description" content="3D-модель бумеранга из берёзовой фанеры: профиль крыла, скруглённые кромки, размах 480&nbsp;мм.">
+<meta name="description" content="3D-модель бумеранга: профиль крыла, скруглённые кромки, размах 480&nbsp;мм.">
 <style>
   :root {
     --ground: #e9edee; --panel: #f7f9f9; --ink: #13191c; --muted: #5d6a6f;
@@ -64,8 +64,6 @@
   .scheme .arrow { stroke: var(--accent); stroke-width: 1.6; fill: none; }
   .scheme .arrowhead { fill: var(--accent); }
   .note { font-size: 13px; color: var(--muted); margin-top: 28px; }
-  footer { margin-top: 30px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
-  footer a { color: var(--accent); }
   @media (max-width: 560px) {
     header h1 { font-size: 23px; } .stage { height: 58vh; }
     .scheme text { font-size: 16px; } .scheme text.small { font-size: 14px; }
@@ -76,7 +74,7 @@
 <body>
 <div class="wrap">
   <header>
-    <h1>Бумеранг из берёзовой фанеры</h1>
+    <h1>Бумеранг размахом 480&nbsp;мм</h1>
     <p>Бумеранг возвращается, потому что каждое его плечо работает как вращающееся крыло. Поэтому
        форму мы строили от аэродинамики: разрез плеча, положение утолщения, угол атаки и скругления
        кромок заданы размерами и проверены на 3D-модели. Поверните её&nbsp;— профиль плеч лучше всего
@@ -96,7 +94,6 @@
     <div><dt>Размах</dt><dd>480&nbsp;мм</dd></div>
     <div><dt>Угол между плечами</dt><dd>99°</dd></div>
     <div><dt>Толщина</dt><dd>9&nbsp;мм</dd></div>
-    <div><dt>Материал</dt><dd>берёзовая фанера</dd></div>
     <div><dt>Под руку</dt><dd>правую</dd></div>
     <div><dt>Масса</dt><dd>≈&nbsp;130&nbsp;г</dd></div>
   </dl>
@@ -105,7 +102,7 @@
   <section>
     <h2>Каждое плечо устроено как крыло</h2>
     <p>В поперечном разрезе плечо повторяет профиль крыла. Передняя кромка скруглена радиусом 2,5&nbsp;мм,
-       на трети ширины профиль набирает полную толщину листа, а дальше плавно сходит к задней кромке
+       на трети ширины профиль набирает полную толщину 9&nbsp;мм, а дальше плавно сходит к задней кромке
        со скруглением 1&nbsp;мм. Все участки сопряжены касательно, поэтому на поверхности нет граней
        и изломов, на которых срывался бы поток.</p>
     <figure>
@@ -123,7 +120,7 @@
 <line class="arrow" x1="307.8" y1="204.0" x2="200.2" y2="204.0" marker-end="url(#arr)"/>
 <text x="254.0" y="195.0" text-anchor="middle">движение плеча при вращении</text>
 </svg>
-      <figcaption>Разрез плеча посередине, ширина 56&nbsp;мм. Штриховые линии&nbsp;— верх и низ листа фанеры.</figcaption>
+      <figcaption>Разрез плеча посередине, ширина 56&nbsp;мм. Штриховые линии&nbsp;— верх и низ заготовки.</figcaption>
     </figure>
   </section>
 
@@ -161,7 +158,7 @@
   <section>
     <h2>Угол атаки заложен в форму</h2>
     <p>Низ плеча&nbsp;— плоскость, касательная к скруглениям обеих кромок, а центр скругления передней
-       кромки поднят на 3,5&nbsp;мм над низом листа. Так плечо встречает поток под небольшим углом атаки.
+       кромки поднят на 3,5&nbsp;мм над нижней плоскостью. Так плечо встречает поток под небольшим углом атаки.
        Этот угол часто доводят вручную, подгибая прогретые плечи. Здесь он заложен в саму форму,
        и каждое изделие в тираже получает одинаковую геометрию.</p>
   </section>
@@ -173,21 +170,13 @@
        второго плеча, развёрнутый в другую сторону. Переход укладывается в 75&nbsp;мм от оси в каждую сторону,
        поэтому на поверхности нет ступенек и складок.</p>
     <p>К кончикам плечо сужается, и вместе с шириной плавно снижается высота профиля&nbsp;— до трёх
-       четвертей толщины листа. Так разрез сохраняет пропорции крыла до самого кончика.</p>
+       четвертей полной толщины. Так разрез сохраняет пропорции крыла до самого кончика.</p>
   </section>
 
   <section>
     <h2>Скруглённые кромки</h2>
     <p>Бумеранг ловят рукой, поэтому ни одна кромка не остаётся острой: передняя скруглена радиусом
        2,5&nbsp;мм, задняя&nbsp;— 1&nbsp;мм, в локте обе&nbsp;— 2&nbsp;мм.</p>
-  </section>
-
-  <section>
-    <h2>Почему фанера</h2>
-    <p>Из цельной доски бумеранг получается слабым: в одном из плеч волокна неизбежно идут поперёк,
-       и деталь рискует треснуть в локте. Берёзовая фанера набрана из слоёв шпона с перекрёстным
-       направлением волокон и одинаково работает в обоих плечах. Профиль фрезеруется на станке с ЧПУ
-       с двух сторон, а поверхность и кромки доводятся вручную.</p>
   </section>
 
   <section>
@@ -199,7 +188,6 @@
   </section>
 
   <p class="note">3D-визуализация формы. Цвет модели условный.</p>
-  <footer>Lobaro · цифровая обработка дерева · <a href="https://lobaro.ru">lobaro.ru</a></footer>
 </div>
 
 <script src="three.min.js"></script>
@@ -226,6 +214,9 @@
 
   // zoom — множитель к дистанции, при которой изделие целиком помещается в окно любой пропорции
   var az = -0.9, el = 0.95, zoom = 1, pointers = {}, pinch0 = null, zoom0 = zoom;
+  // автоповорот выключает только галочка; жесты его лишь приостанавливают
+  var spin = document.getElementById("spin"), holdUntil = 0, spinSpeed = 1;
+  function hold() { holdUntil = performance.now() + 900; }
   function clampZoom(v) { return Math.max(0.35, Math.min(2.4, v)); }
   function fitDist() {
     // описанная сфера изделия 480 × 215 мм — около 263 мм; берём 270, чтобы при любом повороте не резало края
@@ -233,9 +224,9 @@
     return 270 / Math.sin(Math.min(hv, hh));
   }
   canvas.addEventListener("pointerdown", function (e) {
-    canvas.setPointerCapture(e.pointerId);
+    try { canvas.setPointerCapture(e.pointerId); } catch (_) {}
     pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
-    document.getElementById("spin").checked = false;
+    hold();
     var ids = Object.keys(pointers);
     if (ids.length === 2) {
       var a = pointers[ids[0]], b = pointers[ids[1]];
@@ -255,17 +246,15 @@
       zoom = clampZoom(zoom0 * pinch0 / Math.max(10, Math.hypot(a.x - b.x, a.y - b.y)));
     }
   });
-  function up(e) { delete pointers[e.pointerId]; if (Object.keys(pointers).length < 2) pinch0 = null; }
+  function up(e) { delete pointers[e.pointerId]; if (Object.keys(pointers).length < 2) pinch0 = null; hold(); }
   ["pointerup", "pointercancel"].forEach(function (ev) { canvas.addEventListener(ev, up); });
   canvas.addEventListener("wheel", function (e) {
-    e.preventDefault(); zoom = clampZoom(zoom * (1 + Math.sign(e.deltaY) * 0.1));
+    e.preventDefault(); hold(); zoom = clampZoom(zoom * (1 + Math.sign(e.deltaY) * 0.1));
   }, { passive: false });
   document.getElementById("flip").addEventListener("change", function (e) { el = e.target.checked ? -0.85 : 0.95; });
 
   if (window.matchMedia("(pointer: coarse)").matches)
     document.getElementById("hint").textContent = "тяните — поворот · два пальца — масштаб";
-  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduced) document.getElementById("spin").checked = false;
   function resize() {
     var w = canvas.clientWidth, h = canvas.clientHeight;
     if (w && h && (canvas.width !== Math.floor(w * renderer.getPixelRatio()) ||
@@ -275,7 +264,10 @@
   }
   function tick() {
     resize();
-    if (document.getElementById("spin").checked) az += 0.0035;
+    var busy = Object.keys(pointers).length > 0 || performance.now() < holdUntil;
+    var target = spin.checked && !busy ? 1 : 0;
+    spinSpeed = target < spinSpeed ? 0 : spinSpeed + (target - spinSpeed) * 0.05;   // стоп сразу, разгон плавно
+    az += 0.0035 * spinSpeed;
     var dist = fitDist() * zoom;
     camera.position.set(dist * Math.cos(el) * Math.cos(az), dist * Math.cos(el) * Math.sin(az), dist * Math.sin(el));
     camera.up.set(0, 0, 1); camera.lookAt(0, 0, 0);
