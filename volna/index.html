@@ -1,0 +1,339 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Бумеранг-волна 250 мм</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --ground: #e9edee;
+    --panel: #f7f9f9;
+    --ink: #13191c;
+    --muted: #5d6a6f;
+    --line: #c6d0d2;
+    --accent: #1f6f8b;
+    --mark: #a8261f;
+    --wood: #d8b177;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #101618;
+      --panel: #182023;
+      --ink: #e8eded;
+      --muted: #94a3a8;
+      --line: #2b383c;
+      --accent: #5bb2cf;
+      --mark: #e06a60;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #101618;
+    --panel: #182023;
+    --ink: #e8eded;
+    --muted: #94a3a8;
+    --line: #2b383c;
+    --accent: #5bb2cf;
+    --mark: #e06a60;
+    color-scheme: dark;
+  }
+  html { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, "Segoe UI", sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .wrap {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 0 16px;
+    padding-block: 20px 24px;
+    max-width: 1180px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+  header h1 {
+    font-size: 21px;
+    font-weight: 600;
+    margin: 0 0 4px;
+    text-wrap: balance;
+  }
+  header p { margin: 0; color: var(--muted); font-size: 14px; max-width: 62ch; }
+  .switch {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .switch button {
+    font: inherit;
+    font-size: 14px;
+    padding: 8px 14px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--panel);
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .switch button[aria-pressed="true"] {
+    border-color: var(--accent);
+    box-shadow: inset 0 -2px 0 var(--accent);
+    font-weight: 500;
+  }
+  .switch button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .stage {
+    position: relative;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    min-height: 380px;
+    height: 58vh;
+    flex: 0 0 auto;
+    overflow: hidden;
+  }
+  .stage canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+  .hint {
+    position: absolute;
+    left: 12px;
+    bottom: 10px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    background: color-mix(in srgb, var(--panel) 82%, transparent);
+    padding: 3px 7px;
+    border-radius: 2px;
+  }
+  .toggles { display: flex; gap: 16px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+  .toggles label { display: flex; gap: 6px; align-items: center; cursor: pointer; }
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .facts div { background: var(--panel); padding: 10px 14px; }
+  .facts dt {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin: 0 0 2px;
+  }
+  .facts dd small { font-size: 12px; color: var(--muted); }
+  .facts dd {
+    margin: 0;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 17px;
+    font-variant-numeric: tabular-nums;
+  }
+  .note { color: var(--muted); font-size: 13px; margin: 0; max-width: 72ch; }
+  .note b { color: var(--ink); font-weight: 500; }
+  @media (max-width: 640px) { .stage { min-height: 300px; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Бумеранг-волна 250 мм: два варианта толщины</h1>
+    <p>Настольный сувенир из массива дерева, клееного из ламелей вдоль каждой лопасти. Форма
+       одна и та же — снята с картинки технического задания: габарит 250 мм, ширина плеча
+       16–37 мм. Сечение крыловое: скруглённая толстая кромка, плавный переход к тонкой.
+       Отличаются варианты только толщиной — 7 или 8 мм.</p>
+  </header>
+
+  <div class="switch" id="switch" role="group" aria-label="Вариант нижней поверхности"></div>
+
+  <div class="stage">
+    <canvas id="c"></canvas>
+    <div class="hint">тяните мышью — поворот · колесо — масштаб</div>
+  </div>
+
+  <div class="toggles">
+    <label><input type="checkbox" id="spin" checked> автоповорот</label>
+    <label><input type="checkbox" id="wire"> показать сетку</label>
+    <label><input type="checkbox" id="flip"> смотреть снизу</label>
+  </div>
+
+  <dl class="facts" id="facts"></dl>
+
+  <p class="note" id="desc"></p>
+  <p class="note">Все кромки скруглены: толстая R 1,8 мм у семёрки и R 2,1 мм у восьмёрки,
+     тонкая — R 0,8 и R 0,9 мм соответственно. <b>Полная толщина</b> — в самом толстом месте,
+     <b>средняя</b> — объём, делённый на площадь в плане: по ней видно, насколько вещь «набитая».
+     Масса посчитана для массива твёрдых лиственных пород, 700 кг/м³, без покрытия и золочения;
+     у более лёгкой породы вес уменьшится пропорционально плотности. Изделие настольное —
+     сувенир, а не метательный снаряд. Геометрия показана как проект на согласование.</p>
+</div>
+
+<script src="../three.min.js"></script>
+<script src="models.js"></script>
+<script>
+(function () {
+  var МОДЕЛИ = window.МОДЕЛИ || [];
+  var ОПИСАНИЕ = {
+    "локальные-подрезы": "Наибольшая толщина 7 мм, масса около 26 г. Изделие лежит на столе плоской серединой, от кромок к ней идут аккуратные скосы — сбоку вещь выглядит лёгкой.",
+    "локальные-подрезы-8мм": "Тот же бумеранг на миллиметр толще: наибольшая толщина 8 мм, масса около 30 г. В руке ощущается плотнее, сбоку силуэт заметно полнее."
+  };
+  var ИМЯ = {
+    "локальные-подрезы": "Толщина 7 мм",
+    "локальные-подрезы-8мм": "Толщина 8 мм"
+  };
+
+  var canvas = document.getElementById("c");
+  var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(38, 1, 1, 5000);
+
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x9aa7ab, 0.75));
+  var key = new THREE.DirectionalLight(0xffffff, 0.95);
+  key.position.set(320, -420, 560);
+  scene.add(key);
+  var fill = new THREE.DirectionalLight(0xffffff, 0.45);
+  fill.position.set(-380, 300, 220);
+  scene.add(fill);
+  var rim = new THREE.DirectionalLight(0xffffff, 0.3);
+  rim.position.set(0, 200, -420);
+  scene.add(rim);
+
+  var material = new THREE.MeshStandardMaterial({
+    color: 0x7b8a93, roughness: 0.45, metalness: 0.05, side: THREE.DoubleSide,
+    flatShading: false
+  });
+  var wireMaterial = new THREE.MeshBasicMaterial({ color: 0x1b2328, wireframe: true, transparent: true, opacity: 0.35 });
+
+  var group = new THREE.Group();
+  scene.add(group);
+  var mesh = null, wireMesh = null;
+
+  function buffer(b64) {
+    var bin = atob(b64);
+    var buf = new ArrayBuffer(bin.length);
+    var view = new Uint8Array(buf);
+    for (var i = 0; i < bin.length; i++) view[i] = bin.charCodeAt(i);
+    return buf;
+  }
+
+  // геометрия приходит индексированной: одна вершина — один узел сетки. Так нормаль в узле
+  // усредняется по всем сходящимся граням и поверхность выглядит гладкой. Если отдавать
+  // треугольники россыпью, three.js считает нормаль на грань и рисует огранку.
+  function geometryFrom(d) {
+    var geo = new THREE.BufferGeometry();
+    geo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(buffer(d["позиции"])), 3));
+    if (d["индексы"]) {
+      geo.setIndex(new THREE.BufferAttribute(new Uint32Array(buffer(d["индексы"])), 1));
+    }
+    geo.computeVertexNormals();
+    return geo;
+  }
+
+  var текущий = 0;
+  function показать(i) {
+    текущий = i;
+    var d = МОДЕЛИ[i];
+    if (mesh) { group.remove(mesh); mesh.geometry.dispose(); }
+    if (wireMesh) { group.remove(wireMesh); }
+    var geo = geometryFrom(d);
+    mesh = new THREE.Mesh(geo, material);
+    group.add(mesh);
+    wireMesh = new THREE.Mesh(geo, wireMaterial);
+    wireMesh.visible = document.getElementById("wire").checked;
+    group.add(wireMesh);
+
+    document.getElementById("facts").innerHTML =
+      факт("Масса", число(d["масса"]) + " г") +
+      факт("Полная толщина", число(d["полная_толщина"] || d["толщина"]) + " мм") +
+      факт("Средняя толщина", число(d["средняя_толщина"]) + " мм") +
+      факт("Объём", число(d["объём"]) + " см³");
+    document.getElementById("desc").textContent = ОПИСАНИЕ[d["имя"]] || "";
+    Array.prototype.forEach.call(document.querySelectorAll("#switch button"), function (b, k) {
+      b.setAttribute("aria-pressed", k === i ? "true" : "false");
+    });
+  }
+
+  function число(v) {
+    return String(Math.round(v * 100) / 100).replace(".", ",");
+  }
+
+  function факт(k, v) {
+    return "<div><dt>" + k + "</dt><dd>" + v + "</dd></div>";
+  }
+
+  МОДЕЛИ.forEach(function (d, i) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.textContent = ИМЯ[d["имя"]] || d["имя"];
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function () { показать(i); });
+    document.getElementById("switch").appendChild(b);
+  });
+
+  // орбита: перетаскивание мышью или пальцем, колесо — масштаб
+  var азимут = -0.9, высота = 0.95, дистанция = 330, цельY = 0;
+  var drag = null;
+  function point(e) {
+    var t = e.touches ? e.touches[0] : e;
+    return { x: t.clientX, y: t.clientY };
+  }
+  // автоповорот выключается ТОЛЬКО галочкой: раньше он снимался от любого касания модели,
+  // и стоило человеку один раз крутнуть — вращение замирало навсегда
+  canvas.addEventListener("pointerdown", function (e) {
+    drag = point(e); canvas.setPointerCapture(e.pointerId);
+  });
+  canvas.addEventListener("pointermove", function (e) {
+    if (!drag) return;
+    var p = point(e);
+    азимут -= (p.x - drag.x) * 0.008;
+    высота = Math.max(-1.45, Math.min(1.45, высота + (p.y - drag.y) * 0.006));
+    drag = p;
+  });
+  ["pointerup", "pointercancel", "pointerleave"].forEach(function (ev) {
+    canvas.addEventListener(ev, function () { drag = null; });
+  });
+  canvas.addEventListener("wheel", function (e) {
+    e.preventDefault();
+    дистанция = Math.max(150, Math.min(1100, дистанция * (1 + Math.sign(e.deltaY) * 0.1)));
+  }, { passive: false });
+
+  document.getElementById("wire").addEventListener("change", function (e) {
+    if (wireMesh) wireMesh.visible = e.target.checked;
+  });
+  document.getElementById("flip").addEventListener("change", function (e) {
+    высота = e.target.checked ? -0.85 : 0.95;
+  });
+
+  function resize() {
+    var w = canvas.clientWidth, h = canvas.clientHeight;
+    if (!w || !h) return;
+    if (canvas.width !== w || canvas.height !== h) {
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+  }
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function tick() {
+    resize();
+    if (document.getElementById("spin").checked && !reduced) азимут += 0.0035;
+    camera.position.set(
+      дистанция * Math.cos(высота) * Math.cos(азимут),
+      дистанция * Math.cos(высота) * Math.sin(азимут),
+      дистанция * Math.sin(высота) + цельY
+    );
+    camera.up.set(0, 0, 1);
+    camera.lookAt(0, 0, 0);
+    renderer.render(scene, camera);
+    requestAnimationFrame(tick);
+  }
+
+  if (МОДЕЛИ.length) { показать(0); tick(); }
+  else { document.getElementById("desc").textContent = "Модели не загрузились."; }
+})();
+</script>
