@@ -145,13 +145,15 @@
     padding: 6px 10px 2px;
   }
   .scheme { width: 100%; height: auto; display: block; }
-  .scheme .body { fill: color-mix(in srgb, var(--wood) 30%, transparent); stroke: var(--ink); stroke-width: 0.7; }
+  .scheme .body { fill: color-mix(in srgb, var(--accent) 14%, var(--panel)); stroke: var(--muted); stroke-width: 0.7; }
   .scheme .crest { fill: none; stroke: var(--mark); stroke-width: 1.5; stroke-dasharray: 5 3.5; stroke-linecap: round; }
   .scheme .leader { stroke: var(--muted); stroke-width: 0.4; }
   .scheme .dot { fill: var(--mark); }
   .scheme .arrowhead { fill: var(--muted); }
-  .scheme text { fill: var(--ink); font-family: inherit; font-size: 7.5px; }
+  .scheme text { fill: var(--ink); font-family: inherit; font-size: 7.5px;
+    paint-order: stroke; stroke: var(--panel); stroke-width: 2.2; stroke-linejoin: round; }
   .scheme text.small { fill: var(--muted); font-size: 6.8px; }
+  .how .figure { background: var(--ground); }
   @media (max-width: 640px) { .stage { min-height: 300px; } }
 </style>
 
@@ -190,15 +192,17 @@
 <polyline class="crest" points="44.7,71.2 45.4,72.9 46.0,74.7 47.5,76.0 48.0,77.9 49.1,79.5 50.5,81.7 51.7,83.3 52.8,84.9 53.9,86.5 55.1,88.1 56.2,89.7 57.4,91.2 57.5,93.5 58.8,95.0 60.0,96.6 61.3,98.1 62.5,99.6 63.8,101.1 65.0,102.7 66.3,104.2 67.7,105.6 69.5,107.6 70.9,109.0 72.3,110.5 73.7,111.9 75.1,113.2 76.6,114.6 78.0,116.0 79.5,117.3 80.9,118.7 82.4,119.9 83.9,121.2 85.5,122.5 87.0,123.7 88.6,124.9 90.2,126.0 91.8,127.2 93.9,128.8 95.5,130.0 97.2,131.1 98.9,132.1 100.6,133.2 102.3,134.2 104.0,135.2 105.7,136.2 107.4,137.2 109.2,138.1 110.9,139.0 112.7,139.8 114.6,140.5 116.4,141.4 118.2,142.1 120.1,142.7 122.6,143.6 124.4,144.3 126.3,144.9 128.2,145.6 130.2,146.1 132.1,146.7 134.1,147.1 136.0,147.6 138.1,147.9 140.1,148.2 142.2,148.5 144.3,148.7 146.4,148.9 148.6,149.0 150.8,148.8 153.1,148.6 156.0,148.0 158.2,147.3 160.3,146.5 162.4,145.5 164.3,144.3 165.2,141.9 166.9,140.6 168.4,139.2 169.4,137.2"/>
 <polyline class="crest" points="191.2,99.4 192.3,97.8 193.7,95.6 195.0,94.1 196.3,92.7 197.7,91.3 199.0,89.9 200.4,88.5 201.8,87.1 203.1,85.7 204.5,84.3 205.9,82.9 207.3,81.6 208.8,80.2 210.3,78.9 211.7,77.6 213.2,76.3 214.6,75.0 216.6,73.3 218.1,72.0 219.7,70.8 221.2,69.5 222.8,68.3 224.3,67.1 226.2,66.3 227.9,65.3 229.4,63.9 231.1,62.9 232.8,61.9 234.5,60.9 236.2,59.9 237.9,58.9 239.6,57.9 241.4,56.9 244.0,56.0 245.6,54.7 247.6,54.0 249.5,53.3 251.5,52.6 253.6,51.9"/>
 <text x="44.0" y="160.2" text-anchor="start">наибольшая толщина</text>
-<line class="leader" x1="59.1" y1="162.2" x2="95.5" y2="130.0"/>
+<line class="leader" x1="95.5" y1="153.4" x2="95.5" y2="130.0"/>
 <circle class="dot" cx="95.5" cy="130.0" r="1.8"/>
 <text x="191.0" y="142.2" text-anchor="start">перегиб</text>
-<line class="leader" x1="196.9" y1="144.2" x2="180.7" y2="118.1"/>
+<line class="leader" x1="191.0" y1="135.4" x2="180.7" y2="118.1"/>
 <circle class="dot" cx="180.7" cy="118.1" r="1.8"/>
 <text class="small" x="2.0" y="121.2" text-anchor="start">толстая кромка</text>
-<line class="leader" x1="13.8" y1="123.2" x2="55.9" y2="102.9"/>
+<line class="leader" x1="55.9" y1="114.4" x2="55.9" y2="102.9"/>
+<circle class="dot" cx="55.9" cy="102.9" r="1.8"/>
 <text class="small" x="140.0" y="166.2" text-anchor="start">тонкая кромка</text>
-<line class="leader" x1="150.9" y1="168.2" x2="167.3" y2="116.8"/>
+<line class="leader" x1="167.3" y1="159.4" x2="167.3" y2="116.8"/>
+<circle class="dot" cx="167.3" cy="116.8" r="1.8"/>
 </svg>
     </div>
     <p>Сечение сделано как у крыла: одна кромка толстая и скруглённая, к противоположной профиль
