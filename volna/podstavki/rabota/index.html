@@ -280,8 +280,8 @@
       факт("Габарит", d["габарит"]) +
       факт("Паз", d["паз"]) +
       (d["спинка"] ? факт("Задняя стенка", d["спинка"]) : "") +
-      факт("Наклон изделия", d["наклон"]) +
-      факт("Масса подставки", "около " + число(d["масса"]) + " г");
+      факт("Наклон бумеранга", d["наклон"]) +
+      факт("Масса подставки", "около " + Math.round(d["масса"]) + " г");
     document.getElementById("desc").textContent = d["описание"] || "";
     Array.prototype.forEach.call(document.querySelectorAll("#variants button"), function (b, k) {
       b.setAttribute("aria-pressed", k === i ? "true" : "false");
